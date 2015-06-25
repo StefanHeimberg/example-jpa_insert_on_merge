@@ -9,7 +9,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.RollbackException;
+import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -28,7 +28,7 @@ public abstract class BaseTest {
 
     public abstract void clearCaches();
 
-    @Test(expected = RollbackException.class)
+    @Test(expected = PersistenceException.class)
     public void assert_new_book_inserted_on_merge() throws Throwable {
         final TypedQuery<Book> qFindAll = getEM().createNamedQuery(Book.FIND_ALL, Book.class);
 
