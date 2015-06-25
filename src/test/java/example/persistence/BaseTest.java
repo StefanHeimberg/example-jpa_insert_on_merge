@@ -75,7 +75,7 @@ public abstract class BaseTest {
         clearCaches();
 
         final Book book1 = new Book();
-        book1.setId(1l);
+        book1.setId(999l);
         book1.setTitle("test book");
 
         getET().begin();
@@ -89,7 +89,7 @@ public abstract class BaseTest {
         clearCaches();
 
         final Book book2 = new Book();
-        book2.setId(1l);
+        book2.setId(999l);
         book2.setTitle("test book 2");
 
         getET().begin();
@@ -103,7 +103,7 @@ public abstract class BaseTest {
         clearCaches();
 
         getET().begin();
-        getEM().remove(getEM().getReference(Book.class, 1l));
+        getEM().remove(getEM().getReference(Book.class, 999l));
         getET().commit();
     }
 
@@ -140,7 +140,7 @@ public abstract class BaseTest {
         clearCaches();
 
         final Person person = new Person();
-        person.setId(1l);
+        person.setId(999l);
         person.setName("test person");
 
         getET().begin();
@@ -151,6 +151,8 @@ public abstract class BaseTest {
         final List<Person> resultList = qFindAll.getResultList();
         assertEquals(1, resultList.size());
         final Long id = resultList.get(0).getId();
+        // INFO: hibernate generiert die id immer NEU, auch wenn diese im entity zuvor gesetzt wurde
+        //assertEquals(999l, id.longValue());
 
         getET().begin();
         getEM().remove(getEM().getReference(Person.class, id));
