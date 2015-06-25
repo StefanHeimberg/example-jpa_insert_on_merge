@@ -12,13 +12,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Stefan Heimberg <kontakt@stefanheimberg.ch>
  */
 @Entity
+@NamedQueries(
+        @NamedQuery(name = Person.FIND_ALL, query = "SELECT b FROM Person b")
+)
 public class Person implements Serializable {
+    
+    public static final String FIND_ALL = "Person.findAll";
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,6 +39,10 @@ public class Person implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
     public String getName() {
         return name;
     }

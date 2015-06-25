@@ -10,13 +10,20 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Stefan Heimberg <kontakt@stefanheimberg.ch>
  */
 @Entity
+@NamedQueries(
+        @NamedQuery(name = Book.FIND_ALL, query = "SELECT b FROM Book b")
+)
 public class Book implements Serializable {
+    
+    public static final String FIND_ALL = "Book.findAll";
     
     @Id
     private Long id;

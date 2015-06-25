@@ -15,6 +15,9 @@
         
         <junit.version>4.12</junit.version>
         <dbunit.version>2.5.0</dbunit.version>
+        <eclipselink.version>2.5.2</eclipselink.version>
+        <hibernate.version>4.3.10.Final</hibernate.version>
+        <derby.version>10.11.1.1</derby.version>
     </properties>
     
     <dependencies>
@@ -38,47 +41,33 @@
             <version>${dbunit.version}</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
-    
-    <profiles>
-        <profile>
-            <id>eclipselink</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <eclipselink.version>2.5.2</eclipselink.version>
-            </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.eclipse.persistence</groupId>
-                    <artifactId>eclipselink</artifactId>
-                    <version>${eclipselink.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.eclipse.persistence</groupId>
-                    <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
-                    <version>${eclipselink.version}</version>
-                    <scope>provided</scope>
-                </dependency>
-            </dependencies>
-        </profile>
         
-        <profile>
-            <id>derby-embedded</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.apache.derby</groupId>
-                    <artifactId>derby</artifactId>
-                    <version>10.11.1.1</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>${eclipselink.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+            <version>${eclipselink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.10.Final</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>${derby.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     
 </project>
